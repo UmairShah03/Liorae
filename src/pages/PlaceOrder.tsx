@@ -17,7 +17,7 @@ const PlaceOrder = () => {
     state: "",
     country: "",
     phone: "",
-    paymentMethod: "COD", // Default to Cash on Delivery
+    paymentMethod: "COD",
   });
 
   const subtotal = cart.reduce(
@@ -28,8 +28,6 @@ const PlaceOrder = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Clear cart and redirect to success page
     clearCart();
     navigate("/order-success");
   };
@@ -49,160 +47,174 @@ const PlaceOrder = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-8">
+    <div className="container mx-auto px-2 sm:px-4 py-4 md:py-8 grid md:grid-cols-3 gap-4 md:gap-8">
       {/* Customer Information */}
-      <form onSubmit={handleSubmit} className="md:col-span-2 space-y-6">
-        <h2 className="text-2xl font-bold mb-6">
+      <form
+        onSubmit={handleSubmit}
+        className="md:col-span-2 space-y-4 md:space-y-6"
+      >
+        <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
           <Title txt1="CUSTOMER" txt2="INFORMATION" />
         </h2>
 
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          <div>
-            <label
-              htmlFor="fullName"
-              className="block text-sm font-medium mb-2"
-            >
-              Full Name
-            </label>
-            <input
-              id="fullName"
-              type="text"
-              required
-              className="w-full p-2 border rounded"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-              aria-required="true"
-            />
+        <div className="grid gap-2 md:gap-4 grid-cols-1">
+          <div className="space-y-2 md:space-y-4">
+            <div>
+              <label
+                htmlFor="fullName"
+                className="block text-sm font-medium mb-1 md:mb-2"
+              >
+                Full Name
+              </label>
+              <input
+                id="fullName"
+                type="text"
+                required
+                className="w-full p-2 text-sm md:text-base border rounded focus:ring-2 focus:ring-black"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium mb-1 md:mb-2"
+              >
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                className="w-full p-2 text-sm md:text-base border rounded focus:ring-2 focus:ring-black"
+                placeholder="name@example.com"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+              />
+            </div>
           </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2">
-              Email Address
-            </label>
-            <input
-              id="email"
-              type="email"
-              required
-              className="w-full p-2 border rounded"
-              placeholder="name@example.com"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-              aria-required="true"
-            />
-          </div>
-        </div>
+          <div className="grid gap-2 md:gap-4 grid-cols-1">
+            <div>
+              <label
+                htmlFor="streetAddress"
+                className="block text-sm font-medium mb-1 md:mb-2"
+              >
+                Street Address
+              </label>
+              <input
+                id="streetAddress"
+                type="text"
+                required
+                className="w-full p-2 text-sm md:text-base border rounded focus:ring-2 focus:ring-black"
+                placeholder="123 Main Street"
+                value={formData.street}
+                onChange={(e) =>
+                  setFormData({ ...formData, street: e.target.value })
+                }
+              />
+            </div>
 
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          <div>
-            <label
-              htmlFor="streetAddress"
-              className="block text-sm font-medium mb-2"
-            >
-              Street Address
-            </label>
-            <input
-              id="streetAddress"
-              type="text"
-              required
-              className="w-full p-2 border rounded"
-              placeholder="123 Main Street"
-              value={formData.street}
-              onChange={(e) =>
-                setFormData({ ...formData, street: e.target.value })
-              }
-              aria-required="true"
-            />
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+              <div>
+                <label
+                  htmlFor="city"
+                  className="block text-sm font-medium mb-1 md:mb-2"
+                >
+                  City
+                </label>
+                <input
+                  id="city"
+                  type="text"
+                  required
+                  className="w-full p-2 text-sm md:text-base border rounded focus:ring-2 focus:ring-black"
+                  placeholder="Your City"
+                  value={formData.city}
+                  onChange={(e) =>
+                    setFormData({ ...formData, city: e.target.value })
+                  }
+                />
+              </div>
 
-          <div>
-            <label htmlFor="city" className="block text-sm font-medium mb-2">
-              City
-            </label>
-            <input
-              id="city"
-              type="text"
-              required
-              className="w-full p-2 border rounded"
-              placeholder="Your City"
-              value={formData.city}
-              onChange={(e) =>
-                setFormData({ ...formData, city: e.target.value })
-              }
-              aria-required="true"
-            />
-          </div>
-        </div>
+              <div>
+                <label
+                  htmlFor="state"
+                  className="block text-sm font-medium mb-1 md:mb-2"
+                >
+                  State
+                </label>
+                <input
+                  id="state"
+                  type="text"
+                  required
+                  className="w-full p-2 text-sm md:text-base border rounded focus:ring-2 focus:ring-black"
+                  placeholder="Your State"
+                  value={formData.state}
+                  onChange={(e) =>
+                    setFormData({ ...formData, state: e.target.value })
+                  }
+                />
+              </div>
+            </div>
 
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
-          <div>
-            <label htmlFor="state" className="block text-sm font-medium mb-2">
-              State
-            </label>
-            <input
-              id="state"
-              type="text"
-              required
-              className="w-full p-2 border rounded"
-              placeholder="Your State"
-              value={formData.state}
-              onChange={(e) =>
-                setFormData({ ...formData, state: e.target.value })
-              }
-              aria-required="true"
-            />
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+              <div>
+                <label
+                  htmlFor="country"
+                  className="block text-sm font-medium mb-1 md:mb-2"
+                >
+                  Country
+                </label>
+                <input
+                  id="country"
+                  type="text"
+                  required
+                  className="w-full p-2 text-sm md:text-base border rounded focus:ring-2 focus:ring-black"
+                  placeholder="Your Country"
+                  value={formData.country}
+                  onChange={(e) =>
+                    setFormData({ ...formData, country: e.target.value })
+                  }
+                />
+              </div>
 
-          <div>
-            <label htmlFor="country" className="block text-sm font-medium mb-2">
-              Country
-            </label>
-            <input
-              id="country"
-              type="text"
-              required
-              className="w-full p-2 border rounded"
-              placeholder="Your Country"
-              value={formData.country}
-              onChange={(e) =>
-                setFormData({ ...formData, country: e.target.value })
-              }
-              aria-required="true"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="phoneNumber"
-              className="block text-sm font-medium mb-2"
-            >
-              Phone Number
-            </label>
-            <input
-              id="phoneNumber"
-              type="tel"
-              required
-              className="w-full p-2 border rounded"
-              placeholder="123-456-789"
-              pattern="[+0-9\s\-\(\)]{10,}"
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData({ ...formData, phone: e.target.value })
-              }
-              aria-required="true"
-            />
+              <div>
+                <label
+                  htmlFor="phoneNumber"
+                  className="block text-sm font-medium mb-1 md:mb-2"
+                >
+                  Phone Number
+                </label>
+                <input
+                  id="phoneNumber"
+                  type="tel"
+                  required
+                  className="w-full p-2 text-sm md:text-base border rounded focus:ring-2 focus:ring-black"
+                  placeholder="123-456-789"
+                  pattern="[+0-9\s\-\(\)]{10,}"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                />
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Payment Method */}
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold mb-4">Payment Method</h3>
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 p-4 border rounded">
+        <div className="mt-4 md:mt-8">
+          <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-4">
+            Payment Method
+          </h3>
+          <div className="space-y-2 md:space-y-3">
+            <div className="flex items-center gap-2 p-2 md:p-4 border rounded">
               <input
                 id="cod"
                 type="radio"
@@ -212,14 +224,18 @@ const PlaceOrder = () => {
                 onChange={() =>
                   setFormData({ ...formData, paymentMethod: "COD" })
                 }
-                aria-labelledby="cod-label"
+                className="w-4 h-4"
               />
-              <label htmlFor="cod" id="cod-label">
+              <label
+                htmlFor="cod"
+                id="cod-label"
+                className="ml-2 text-sm md:text-base"
+              >
                 Cash on Delivery (COD)
               </label>
             </div>
 
-            <div className="flex items-center gap-3 p-4 border rounded">
+            <div className="flex items-center gap-2 p-2 md:p-4 border rounded">
               <input
                 id="stripe"
                 type="radio"
@@ -229,27 +245,25 @@ const PlaceOrder = () => {
                 onChange={() =>
                   setFormData({ ...formData, paymentMethod: "stripe" })
                 }
-                aria-labelledby="stripe-label"
+                className="w-4 h-4"
               />
               <label
                 htmlFor="stripe"
                 id="stripe-label"
-                className="flex items-center"
+                className="flex items-center ml-2"
               >
                 <img
                   src={assets.stripe_logo}
-                  className="h-5 mx-4"
-                  alt="Stripe payment gateway logo"
-                  aria-hidden="true"
+                  className="h-4 md:h-5 mx-2 md:mx-4"
+                  alt="Stripe payment"
                 />
-                Credit/Debit Card
+                <span className="text-sm md:text-base">Credit/Debit Card</span>
               </label>
             </div>
 
-            {/* Add Stripe elements here later */}
             {formData.paymentMethod === "stripe" && (
-              <div className="p-4 border rounded bg-gray-50">
-                <p className="text-sm text-gray-600">
+              <div className="p-2 md:p-4 border rounded bg-gray-50 text-sm md:text-base">
+                <p className="text-gray-600">
                   Secure Stripe payment processing will be added later
                 </p>
               </div>
@@ -259,19 +273,19 @@ const PlaceOrder = () => {
 
         <button
           type="submit"
-          className="w-full bg-black text-white py-3 mt-8 hover:bg-gray-800 transition-colors"
+          className="w-full bg-black text-white py-2 md:py-3 mt-4 md:mt-8 hover:bg-gray-800 transition-colors text-sm md:text-base"
         >
           Place Order
         </button>
       </form>
 
       {/* Order Summary */}
-      <div className="md:sticky md:top-20 h-fit">
-        <div className="bg-gray-50 p-6 rounded-lg border">
-          <h2 className="text-xl font-bold mb-6">Order Summary</h2>
+      <div className="md:sticky md:top-20 h-fit order-first md:order-last mb-4 md:mb-0">
+        <div className="bg-gray-50 p-4 md:p-6 rounded-lg border">
+          <h2 className="text-lg md:text-xl font-bold mb-4">Order Summary</h2>
 
-          <div className="space-y-4">
-            <div className="flex justify-between">
+          <div className="space-y-2 md:space-y-4">
+            <div className="flex justify-between text-sm md:text-base">
               <span>Items ({totalItems}):</span>
               <span>
                 {currency}
@@ -279,7 +293,7 @@ const PlaceOrder = () => {
               </span>
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between text-sm md:text-base">
               <span>Delivery:</span>
               <span>
                 {currency}
@@ -287,9 +301,9 @@ const PlaceOrder = () => {
               </span>
             </div>
 
-            <hr className="my-4" />
+            <hr className="my-2 md:my-4" />
 
-            <div className="flex justify-between font-bold">
+            <div className="flex justify-between font-bold text-sm md:text-base">
               <span>Total:</span>
               <span>
                 {currency}
@@ -298,13 +312,13 @@ const PlaceOrder = () => {
             </div>
           </div>
 
-          <div className="mt-6 space-y-2">
+          <div className="mt-4 md:mt-6 space-y-1 md:space-y-2">
             {cart.map((item) => (
               <div
                 key={`${item._id}-${item.size}`}
-                className="flex justify-between text-sm"
+                className="flex justify-between text-xs md:text-sm"
               >
-                <span>
+                <span className="max-w-[70%] truncate">
                   {item.name} ({item.size}) × {item.quantity}
                 </span>
                 <span>
